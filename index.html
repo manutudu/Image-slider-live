@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Slider</title>
+    <style>
+        body {
+            margin: 100px;
+            padding: 25px 0px;
+        }
+        .btns {
+            margin: 30px 15px;
+        }
+        .btns button:hover {
+            cursor: pointer !important;
+            background-color: beige;
+            color: black;
+            border-radius: 5px;
+        }
+        .btn {
+            display: flex;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="pic">
+        <img src="./img/t-1.png" id="image" alt="">
+    </div>
+
+    <div class="btn">
+        <div class="btns">
+            <button id="prevBtn" class="slider-btn">◀</button>
+            <button id="nextBtn" class="slider-btn">▶</button>
+        </div>
+    </div>
+
+    <script>
+        // Store image sources in an array
+        const images = [
+            './img/t-1.png', 
+            './img/t-2.png', 
+            './img/t-3.png', 
+            './img/t-4.png',
+            './img/t-5.png'
+        ];
+
+        let currentIndex = 0; // Start with the first image
+
+        // Update the image source based on the current index
+        function updateImage() {
+            const img = document.getElementById('image');
+            img.src = images[currentIndex];
+        }
+
+        // Show the next image
+        function nextImage() {
+            currentIndex++;
+            if (currentIndex >= images.length) {
+                currentIndex = 0; // Loop back to the first image
+            }
+            updateImage();
+        }
+
+        // Show the previous image
+        function prevImage() {
+            currentIndex--;
+            if (currentIndex < 0) {
+                currentIndex = images.length - 1; // Loop to the last image
+            }
+            updateImage();
+        }
+
+        // Add event listeners for the buttons
+        document.getElementById('nextBtn').addEventListener('click', nextImage);
+        document.getElementById('prevBtn').addEventListener('click', prevImage);
+
+        // Initialize the image when the page loads
+        updateImage();
+    </script>
+</body>
+</html>
